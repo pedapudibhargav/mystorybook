@@ -1,0 +1,33 @@
+#page-container{
+    height: 100vh;
+    .container-fluid{
+        height: 100%;
+    }
+    .row{
+        height: 100%;
+    }
+}
+
+#pc-contole-panel,#pc-canvas{
+    height: 100%;
+}
+
+#pc-contole-panel{
+    background-color: aliceblue;
+}
+#pc-canvas-outer{
+    background-color: rgba(0,0,0,0.8);
+    #main-svg{
+        margin: auto;
+        height: 9px * 100;
+        width: 6px * 100;
+        background-color: white;
+    }
+}
+
+#pc-svg-wrap{
+    padding: 20px;
+    text-align: center;
+    max-height: 100vh;
+    overflow: auto;
+}
