@@ -1,0 +1,10 @@
+.cdesign-cpanel-item{
+    width: 120px;
+    float: left;
+    border:1px solid rgba(0,0,0,0.3);
+    padding: 10px;
+    &:hover{
+        cursor: pointer;
+        border:1px solid blue;
+    }
+}
