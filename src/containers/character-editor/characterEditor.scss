@@ -1,33 +1,50 @@
-#page-container{
+#page-container {
     height: 100vh;
-    .container-fluid{
+    .container-fluid {
         height: 100%;
     }
-    .row{
+    .row {
         height: 100%;
     }
 }
 
-#pc-contole-panel,#pc-canvas{
+#pc-contole-panel,
+#pc-canvas {
     height: 100%;
 }
 
-#pc-contole-panel{
+#pc-contole-panel {
     background-color: aliceblue;
 }
-#pc-canvas-outer{
-    background-color: rgba(0,0,0,0.8);
-    #main-svg{
-        margin: auto;
-        height: 9px * 100;
-        width: 6px * 100;
-        background-color: white;
-    }
+#pc-canvas-outer {
+    background-color: rgba(0, 0, 0, 0.8);
 }
 
-#pc-svg-wrap{
+#pc-svg-wrap {
     padding: 20px;
     text-align: center;
     max-height: 100vh;
     overflow: auto;
+}
+#main-svg {
+    margin: auto;
+    height: 9px * 100;
+    width: 6px * 100;
+    background-color: white;
+    position: relative;
+    .canvas-item-dragable {
+        overflow: visible;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+}
+.canvas-item-dragable{
+    &:hover {
+        outline: 2px dashed rgb(49, 170, 207);
+        cursor: pointer;
+    }
+    &:active {
+        opacity: 0.5;
+    }
 }
