@@ -72,29 +72,15 @@ class SvgComp extends React.Component {
         }
     }
 
-    clickTest = (e) => {
-        alert(1);
-    }
-    // setTranslate = (xPos, yPos, el) => {
-    //     el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
-    // }
-
     render() {
         return (
-            <foreignObject width='500' height="500">
-                Offset x and y = {this.xOffset} - {this.yOffset} <br/>
-                Initial x and y = {this.initialX} - {this.initialY}<br/>
-                touches = {this.currentX + this.initialX} - {this.currentY + this.initialY}<br/>
-                current = {this.currentX} - {this.currentY}<br/>
+            <foreignObject width='100%' height="100%">
             <svg
                 onMouseDown={this.dragStart}
                 onMouseUp={this.dragEnd}
                 onMouseMove={(e) => this.drag(e)}
-                onClick={(e) => this.clickTest(e)}
                 class="canvas-item-dragable" viewBox={this.state.currentItem.viewBox} width="300" height="300" 
                 style={{ left: this.xOffset + 'px', top: this.yOffset + 'px'}}
-                // top={this.xOffset + 'px'}
-                // left={this.yOffset + 'px'}
                 >
                 {this.state.currentItem.svgstr}
             </svg>
