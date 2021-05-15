@@ -83,19 +83,21 @@ c0,32,44.117,53.333,85.333,53.333s85.333-21.333,85.333-53.333C341.369,7.568,339.
         // .handleItemClick
         // .bind(this);
     }
-    handleItemClick (svgIn) {
-        console.log('The link was clicked.\n',svgIn);
-        alert(123);
+    handleItemClick (capanelItemIn) {
+        // console.log('The link was clicked.\n',svgIn);
+        this.props.onCpanelItemClick(capanelItemIn)
     }
 
+    
     render() {
         const listItems = this.state.itemList.map((cpanelItem, index) =>
-            <div onClick={() => this.handleItemClick(cpanelItem.svg)}><CharDesignCpanelItem key={index} svgStr={cpanelItem.svg}  /></div>
+            <div onClick={() => this.handleItemClick(cpanelItem)}><CharDesignCpanelItem key={index} svgStr={cpanelItem.svg}  /></div>
         );
 
         return (
-            <div id="char-design-cpanel">
-                {listItems}
+            <div id="char-design-cpanel" class="p-0">
+                <div id="cdesing-menu-l1">L1 menu</div>
+                <div id="cdesing-menu-l2">{listItems}</div>
             </div>
         );
     }

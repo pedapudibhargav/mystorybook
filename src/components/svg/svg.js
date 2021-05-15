@@ -29,7 +29,6 @@ class SvgComp extends React.Component {
       }
 
     dragStart = (e) => {
-        console.log("dragging -- START");
         if (e.type === "touchstart") {
             this.initialX = e.touches[0].clientX - this.xOffset;
             this.initialY = e.touches[0].clientY - this.yOffset;
@@ -42,7 +41,6 @@ class SvgComp extends React.Component {
 
 
     dragEnd = (e) => {
-        console.log("dragging -- END");
         this.initialX = this.currentX;
         this.initialY = this.currentY;
 
@@ -74,7 +72,7 @@ class SvgComp extends React.Component {
 
     render() {
         return (
-            <foreignObject width='100%' height="100%">
+           
             <svg
                 onMouseDown={this.dragStart}
                 onMouseUp={this.dragEnd}
@@ -83,8 +81,7 @@ class SvgComp extends React.Component {
                 style={{ left: this.xOffset + 'px', top: this.yOffset + 'px'}}
                 >
                 {this.state.currentItem.svgstr}
-            </svg>
-            </foreignObject>
+            </svg>           
         );
     }
 }
