@@ -7,6 +7,7 @@ import './charDesignCPanel.scss';
 import ReactDOM from 'react-dom';
 import CharDesignCpanelItemBean from '../../beans/CharDesignCpanelItemBean';
 import CharDesignCpanelItem from '../cdesign-cpanel-item/CdesingCPanelItem';
+import CpanelL1Menu from '../cpanel-l1-menu/CpanelL1Menu';
 
 class CharDesignCPanel extends React.Component {
     constructor(props) {
@@ -96,7 +97,9 @@ c0,32,44.117,53.333,85.333,53.333s85.333-21.333,85.333-53.333C341.369,7.568,339.
 
         return (
             <div id="char-design-cpanel" class="p-0">
-                <div id="cdesing-menu-l1">L1 menu</div>
+                <div id="cdesing-menu-l1">
+                    <CpanelL1Menu></CpanelL1Menu>
+                 </div>
                 <div id="cdesing-menu-l2">{listItems}</div>
             </div>
         );
