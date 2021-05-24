@@ -1,14 +1,13 @@
-import logo from './logo.svg';
-import 'bootstrap/dist/css/bootstrap.min.css';
+
 import './App.css';
-import CharacterEditor from './containers/character-editor/characterEditor';
+import PickABook from './components/pages/pick-a-book/PickABook.js'
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
+        <PickABook></PickABook>
       </header>
-      <CharacterEditor></CharacterEditor>
     </div>
   );
 }
