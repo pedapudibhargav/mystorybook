@@ -1,0 +1,15 @@
+// @import "./../node_modules/bootstrap/scss/bootstrap.scss";
+html,
+body,
+#root,
+.App {
+    height: 100%;
+}
+
+$header-height: 0px;
+.App-header {
+    height: $header-height;
+}
+.App-body{
+    height: calc(100% - #{$header-height});
+}
