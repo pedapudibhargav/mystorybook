@@ -10,7 +10,7 @@ import { ThemeProvider, useMediaQuery } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
-        margin: theme.spacing(1),
+        margin: theme.spacing(0),
         minWidth: 120,
     },
     selectEmpty: {
@@ -42,13 +42,14 @@ const darkTheme = React.useMemo(
         <div className="open-creation-flow">
             <ThemeProvider theme={darkTheme}>
                 <div className="drawer">
-                    <FormControl className={classes.formControl}>
-                        <InputLabel id="demo-simple-select-label">Age</InputLabel>
+                    <FormControl className={classes.formControl + ' w-100per m-0'}>
+                        <InputLabel id="demo-simple-select-label">Number of Adults</InputLabel>
                         <Select
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"
                             value={age}
                             onChange={handleChange}
+                            fullWidth
                         >
                             <MenuItem value={10}>Ten</MenuItem>
                             <MenuItem value={20}>Twenty</MenuItem>

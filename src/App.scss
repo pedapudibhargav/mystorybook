@@ -13,3 +13,9 @@ $header-height: 0px;
 .App-body{
     height: calc(100% - #{$header-height});
 }
+.w-100per{
+    width: 100%;
+}
+.m-0{
+    margin: 0;
+}
