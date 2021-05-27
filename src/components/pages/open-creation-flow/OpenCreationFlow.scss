@@ -1,5 +1,14 @@
-#ocf-sidenav{
+#ocf-sidenav {
     height: 100%;
     width: 380px;
     background-color: #212121;
+}
+#is-a-gift-row {
+    label {
+        float: left;
+        margin-right: 30px;
+    }
+    .form-check {
+        float: left;
+    }
 }

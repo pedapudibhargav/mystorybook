@@ -1,5 +1,7 @@
 import React from "react";
 import Character from "../../beans/character";
+import './OpenCreationFlow.scss';
+
 import {
     BrowserRouter as Router,
     Switch,
@@ -11,10 +13,37 @@ class OpenCreationFlow extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            numOfAdults: 0,
-            numOfKids: 1,
-            adults: [],
-            kids: [],
+            "numOfAdults": "2",
+            "numOfKids": "2",
+            "adults": [
+                {
+                    "name": "Bhargava Chary",
+                    "order": "0",
+                    "isAGifter": false,
+                    "isAReceiver": false
+                },
+                {
+                    "name": "Divya Vijayakumar",
+                    "order": "1",
+                    "isAGifter": false,
+                    "isAReceiver": false
+                }
+            ],
+            "kids": [
+                {
+                    "name": "Ichu",
+                    "order": "0",
+                    "isAGifter": false,
+                    "isAReceiver": false
+                },
+                {
+                    "name": "sriram",
+                    "order": "1",
+                    "isAGifter": false,
+                    "isAReceiver": false
+                }
+            ],
+            "isGift": "true"
         }
         this.handleInputChange = this.handleInputChange.bind(this);
     }
@@ -62,8 +91,7 @@ class OpenCreationFlow extends React.Component {
                     <div className="col-12">
                         <nav aria-label="breadcrumb">
                             <ol className="breadcrumb">
-                                <li className="breadcrumb-item"><a href="#">Home</a></li>
-                                <li className="breadcrumb-item active" aria-current="page">Library</li>
+                                <li className="breadcrumb-item active" aria-current="page">Get Started</li>
                             </ol>
                         </nav>
                         <Router>
@@ -75,24 +103,11 @@ class OpenCreationFlow extends React.Component {
 
                                 <Route path="/create-a-book">
                                     <div>
-                                        <div className='row'>
-                                            <div className="col">
-                                                <label>Is this book a gift?</label>
-                                                <div className="form-check">
-                                                    <input className="form-check-input" type="radio" name="isGift" value="yes" checked onChange={this.handleInputChange} />
-                                                    <label className="form-check-label" htmlFor="exampleRadios1">yes</label>
-                                                </div>
-                                                <div className="form-check">
-                                                    <input className="form-check-input" type="radio" name="exampleRadios" value="no" onChange={this.handleInputChange} />
-                                                    <label className="form-check-label" htmlFor="exampleRadios2">no</label>
-                                                </div>
-                                            </div>
-                                        </div>
                                         <div className="row">
                                             {/* START: get number of adults and kids in the story */}
                                             <div className="col">
                                                 <div className="form-group">
-                                                    <label htmlFor="exampleFormControlSelect1">Number of Adults in your story</label>
+                                                    <label >Number of Adults in your story</label>
                                                     <select className="form-control" name="numOfAdults" value={this.state.numOfAdults} onChange={this.handleInputChange}>
                                                         <option>0</option>
                                                         <option>1</option>
@@ -125,6 +140,10 @@ class OpenCreationFlow extends React.Component {
                                                             charorder={0}
                                                             isadult="true"
                                                             placeholder={this.state.numOfAdults > 1 ? 'First Adult Name' : 'Enter Name'}
+                                                            value={
+                                                                (this.state.adults.length > 0 && this.state.adults[0] !== undefined)
+                                                                    ? this.state.adults[0].name
+                                                                    : ''}
                                                             onChange={this.handleInputChange}
                                                         />
                                                     </div> : null
@@ -137,6 +156,10 @@ class OpenCreationFlow extends React.Component {
                                                             charorder={1}
                                                             isadult="true"
                                                             placeholder='Second Adult Name'
+                                                            value={
+                                                                (this.state.adults.length > 1 && this.state.adults[1] !== undefined)
+                                                                    ? this.state.adults[1].name
+                                                                    : ''}
                                                             onChange={this.handleInputChange}
                                                         />
                                                     </div> : null
@@ -153,6 +176,10 @@ class OpenCreationFlow extends React.Component {
                                                         charorder={0}
                                                         isadult="false"
                                                         placeholder={this.state.numOfKids > 1 ? 'First Kid\'s Name' : 'Enter the kid\'s Name'}
+                                                        value={
+                                                            (this.state.kids.length > 0 && this.state.kids[0] !== undefined)
+                                                                ? this.state.kids[0].name
+                                                                : ''}
                                                         onChange={this.handleInputChange}
                                                     />
                                                 </div>
@@ -165,6 +192,10 @@ class OpenCreationFlow extends React.Component {
                                                                 charorder={1}
                                                                 isadult="false"
                                                                 placeholder={'Enter the second kid\'s Name'}
+                                                                value={
+                                                                    (this.state.kids.length > 1 && this.state.kids[1] !== undefined)
+                                                                        ? this.state.kids[1].name
+                                                                        : ''}
                                                                 onChange={this.handleInputChange}
                                                             />
                                                         </div> : null
@@ -178,6 +209,10 @@ class OpenCreationFlow extends React.Component {
                                                                 charorder={2}
                                                                 isadult="false"
                                                                 placeholder={'Enter the third kid\'s Name'}
+                                                                value={
+                                                                    (this.state.kids.length > 2 && this.state.kids[2] !== undefined)
+                                                                        ? this.state.kids[2].name
+                                                                        : ''}
                                                                 onChange={this.handleInputChange}
                                                             />
                                                         </div> : null
@@ -187,33 +222,71 @@ class OpenCreationFlow extends React.Component {
                                         <hr />
 
 
-                                        {/* section to get information of who is the gifter and who is the receiver */}
-                                        <div>
-                                            <div className="form-group">
-                                                <label htmlFor="exampleFormControlSelect1">Who is the gifter</label>
-                                                <select className="form-control">
-                                                    {
-                                                        this.state.adults.map((charIn, index) => {
-
-                                                        })
-                                                    }
-
-                                                    {this.state.adults.map((adultIn,index) =>
-                                                        <option key={index}>{adultIn.name}</option>
-                                                    )}
-                                                </select>
+                                        <div className='row' id='is-a-gift-row'>
+                                            <div className="col">
+                                                <label>Is this book a gift?</label>
+                                                <div className="form-check">
+                                                    <input className="form-check-input" type="radio" name="isGift" value='true' onChange={this.handleInputChange} />
+                                                    <label className="form-check-label" htmlFor="exampleRadios1">yes</label>
+                                                </div>
+                                                <div className="form-check">
+                                                    <input className="form-check-input" type="radio" name="isGift" value='false' onChange={this.handleInputChange} />
+                                                    <label className="form-check-label" htmlFor="exampleRadios2">no</label>
+                                                </div>
                                             </div>
                                         </div>
-                                        <Link className="btn btn-primary" to="/create-a-book/gifter-details"> Next</Link>
+
+
+                                        {/* section to get information of who is the gifter and receiver*/}
+                                        {
+                                            this.state.isGift === 'true' ?
+                                                <div className='row'>
+                                                    <div className="col">
+                                                        <div className="form-group">
+                                                            <label >Who is the gifter?</label>
+                                                            <select className="form-control" name='gifter' defaultValue='' placeholder="Select a gifter">
+                                                                <option value="" disabled >Select a gifter</option>
+                                                                {this.state.adults.map((adultIn, index) =>
+                                                                    <option key={index} value={'adult:' + index}>{adultIn.name}</option>
+                                                                )}
+                                                                {this.state.kids.map((kidIn, index) =>
+                                                                    <option key={index} value={'kid:' + index}>{kidIn.name}</option>
+                                                                )}
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div className="col">
+                                                        <div className="form-group">
+                                                            <label >Who is the gift receiver?</label>
+                                                            <select className="form-control" defaultValue='' name='receiver'>
+                                                                <option value="" disabled >Select a receiver</option>
+                                                                {this.state.adults.map((adultIn, index) =>
+                                                                    <option key={index} value={'adult:' + index}>{adultIn.name}</option>
+                                                                )}
+                                                                {this.state.kids.map((kidIn, index) =>
+                                                                    <option key={index} value={'kid:' + index}>{kidIn.name}</option>
+                                                                )}
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                : null
+                                        }
+
+                                        <div className="row">
+                                            <div className="col text-center">
+                                                <Link className="btn btn-primary btn-block mt-2" to="/create-a-book/gifter-details"> Next</Link>
+                                            </div>
+                                        </div>
                                     </div>
                                 </Route>
 
                             </Switch>
                         </Router>
-                        <div>
+                        {/* <div>
                             Testing:<br />
                             {JSON.stringify(this.state)}
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>
