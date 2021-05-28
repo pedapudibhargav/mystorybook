@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import './PickACharacter.scss';
 import { withRouter } from "react-router";
+import placeholderImg from './image/ninja.svg';
 
 class PickACharacter extends React.Component {
     constructor(props) {
@@ -15,7 +16,7 @@ class PickACharacter extends React.Component {
 
     render() {
         return (
-            <div className="container">
+            <div className="container" id="pick-a-character">
                 <div className="row">
                     <div className="col-12">
                         <nav aria-label="breadcrumb">
@@ -34,8 +35,28 @@ class PickACharacter extends React.Component {
                         </nav>
                     </div>
                 </div>
-                {/* breacrubm */}
-                <p>Pick a character for your book {this.state.charType} and {this.state.charOrder}</p>
+                <div class="row row-cols-1 row-cols-md-3">
+                    <div class="col mb-4">
+                        <div class="card h-100">
+                            <img src={placeholderImg} class="card-img-top" alt="..." />
+                        </div>
+                    </div>
+                    <div class="col mb-4">
+                        <div class="card h-100">
+                            <img src={placeholderImg} class="card-img-top" alt="..." />
+                        </div>
+                    </div>
+                    <div class="col mb-4">
+                        <div class="card h-100">
+                            <img src={placeholderImg} class="card-img-top" alt="..." />
+                        </div>
+                    </div>
+                    <div class="col mb-4">
+                        <div class="card h-100">
+                            <img src={placeholderImg} class="card-img-top" alt="..." />
+                        </div>
+                    </div>
+                </div>
             </div>
         );
     }
