@@ -9,6 +9,7 @@ import {
 } from "react-router-dom";
 import CharactersHome from './components/pages/characters-home/CharactersHome';
 import OpenCreationFlow from './components/pages/open-creation-flow/OpenCreationFlow';
+import PickACharacter from "./components/pages/pick-a-character/PickACharacter";
 
 class App extends React.Component {
   constructor(props) {
@@ -62,6 +63,9 @@ class App extends React.Component {
 
           <Router>
             <Switch>
+              <Route path="/create-a-book/pick-acharacter/:charType/:charOrder">
+                <PickACharacter></PickACharacter>
+              </Route>
               <Route path="/create-a-book/characters">
                 <CharactersHome></CharactersHome>
               </Route>

@@ -57,7 +57,7 @@ class CharactersHome extends React.Component {
                   <Link className='a'>Start creating</Link>
                 </li>
                 <li className="breadcrumb-item active" aria-current="page">
-                  Pick your characters
+                  Characters Home
                 </li>
               </ol>
             </nav>
@@ -72,7 +72,7 @@ class CharactersHome extends React.Component {
                 <img src={adultPlaceholderImage} className="card-img-top" alt="..." />
                 <div className="card-body text-center">
                   <h5 className="card-title">{adultIn.name}</h5>
-                  <div className="btn btn-secondary">Edit character</div>
+                  <Link className='btn btn-secondary' to={"/create-a-book/pick-acharacter/adults/" + index}>Edit character</Link>
                 </div>
               </div>
             </div>
@@ -83,7 +83,7 @@ class CharactersHome extends React.Component {
                 <img src={kidPlaceholderImage} className="card-img-top" alt="..." />
                 <div className="card-body text-center">
                   <h5 className="card-title">{kidIn.name}</h5>
-                  <div className="btn btn-secondary">Edit character</div>
+                  <Link className='btn btn-secondary' to="/create-a-book/pick-acharacter">Edit character</Link>
                 </div>
               </div>
             </div>
