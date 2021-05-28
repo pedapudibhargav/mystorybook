@@ -9,42 +9,15 @@ import {
 class OpenCreationFlow extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            "numOfAdults": "2",
-            "numOfKids": "2",
-            "adults": [
-                {
-                    "name": "Bhargava Chary",
-                    "order": "0",
-                    "isAGifter": false,
-                    "isAReceiver": false
-                },
-                {
-                    "name": "Divya Vijayakumar",
-                    "order": "1",
-                    "isAGifter": false,
-                    "isAReceiver": false
-                }
-            ],
-            "kids": [
-                {
-                    "name": "Ichu",
-                    "order": "0",
-                    "isAGifter": false,
-                    "isAReceiver": false
-                },
-                {
-                    "name": "sriram",
-                    "order": "1",
-                    "isAGifter": false,
-                    "isAReceiver": false
-                }
-            ],
-            "isGift": "true"
-        }
+        this.state = this.props.rootState;
         this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleLocalStateChange = this.handleLocalStateChange.bind(this);
     }
 
+    handleLocalStateChange(stateObjIn) {
+        this.setState(stateObjIn);
+        this.props.onUpdateRootState(this.state);
+    }
     handleInputChange(event) {
         const target = event.target;
         const value = target.type === 'checkbox' ? target.checked : target.value;
@@ -59,12 +32,12 @@ class OpenCreationFlow extends React.Component {
             let tmpCharacter = new Character(value, charorder);
             tmpArray[charorder] = tmpCharacter;
             if (target.getAttribute('isadult') === 'true') {
-                this.setState({
+                this.handleLocalStateChange({
                     adults: tmpArray
                 })
             }
             else if (target.getAttribute('isadult') === 'false') {
-                this.setState({
+                this.handleLocalStateChange({
                     kids: tmpArray
                 })
             }
@@ -75,7 +48,7 @@ class OpenCreationFlow extends React.Component {
         }
         // fallback condition to regular input fields
         else {
-            this.setState({
+            this.handleLocalStateChange({
                 [name]: value
             });
         }
@@ -88,7 +61,10 @@ class OpenCreationFlow extends React.Component {
                     <div className="col-12">
                         <nav aria-label="breadcrumb">
                             <ol className="breadcrumb">
-                                <li className="breadcrumb-item active" aria-current="page">Names</li>
+                                <li className="breadcrumb-item active" aria-current="page">
+                                    <Link className='a' to="/">Home</Link>
+                                </li>
+                                <li className="breadcrumb-item active" aria-current="page">Start creating</li>
                             </ol>
                         </nav>
                         <div>
@@ -264,8 +240,8 @@ class OpenCreationFlow extends React.Component {
 
                             <div className="row">
                                 <div className="col text-center">
-                                        <Link className="btn btn-primary btn-block mt-2" to="/create-a-book/characters"> Next</Link>                                
-                                
+                                    <Link className="btn btn-primary btn-block mt-2" to="/create-a-book/characters"> Next</Link>
+
                                 </div>
                             </div>
                         </div>
