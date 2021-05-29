@@ -1,0 +1,33 @@
+#create-character-container{
+    height: 100%;
+    display: flex;
+    .left-panel{
+        height: 100%;
+        width: 45%;
+        background-color: #1e1e1e;
+        display: flex;
+    }
+    .right-panel{
+        height: 100%;
+        flex-grow: 1;
+        text-align: center;
+        padding:40px;
+        background-color: aliceblue;
+    }
+    .char-canvas-container{
+        height: 100%;
+        width: 80%;
+        margin: auto;
+        background-color: white;
+    }
+    .level-1-nav{
+        height: 100%;
+        width: 100px;
+        background-color: #343434;
+    }
+    .level-2-nav{
+        height: 100%;
+        width: 100px;
+        background-color: #242525;
+    }
+}

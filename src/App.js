@@ -10,6 +10,7 @@ import {
 import CharactersHome from './components/pages/characters-home/CharactersHome';
 import OpenCreationFlow from './components/pages/open-creation-flow/OpenCreationFlow';
 import PickACharacter from "./components/pages/pick-a-character/PickACharacter";
+import CreateCharacter from "./components/pages/create-character/CreateCharacter";
 
 class App extends React.Component {
   constructor(props) {
@@ -65,6 +66,9 @@ class App extends React.Component {
             <Switch>
               <Route path="/create-a-book/pick-acharacter/:charType/:charOrder">
                 <PickACharacter></PickACharacter>
+              </Route>
+              <Route path="/create-a-book/create-character/:charType/:charOrder">
+                <CreateCharacter></CreateCharacter>
               </Route>
               <Route path="/create-a-book/characters">
                 <CharactersHome></CharactersHome>

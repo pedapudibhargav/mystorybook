@@ -16,7 +16,7 @@ class PickACharacter extends React.Component {
 
     render() {
         return (
-            <div className="container" id="pick-a-character">
+            <div className="container" id="pick-a-char-container">
                 <div className="row">
                     <div className="col-12">
                         <nav aria-label="breadcrumb">
@@ -35,27 +35,36 @@ class PickACharacter extends React.Component {
                         </nav>
                     </div>
                 </div>
-                <div class="row row-cols-1 row-cols-md-3">
+                <div class="row row-cols-2 row-cols-md-4">
                     <div class="col mb-4">
-                        <div class="card h-100">
+                        <div class="card card-1-hover h-100 border-primary">
                             <img src={placeholderImg} class="card-img-top" alt="..." />
                         </div>
                     </div>
                     <div class="col mb-4">
-                        <div class="card h-100">
+                        <div class="card card-1-hover h-100">
                             <img src={placeholderImg} class="card-img-top" alt="..." />
                         </div>
                     </div>
                     <div class="col mb-4">
-                        <div class="card h-100">
+                        <div class="card card-1-hover h-100">
                             <img src={placeholderImg} class="card-img-top" alt="..." />
                         </div>
                     </div>
                     <div class="col mb-4">
-                        <div class="card h-100">
+                        <div class="card card-1-hover h-100">
                             <img src={placeholderImg} class="card-img-top" alt="..." />
                         </div>
                     </div>
+                </div>
+                <div className="row">
+                    <div className="col-12">
+                        <Link className='btn btn-secondary btn-block' to={"/create-a-book/create-character/adults/1"}>Create your own </Link>
+                        <div className="btn btn-primary btn-block">
+                            Next
+                        </div>
+                    </div>
+
                 </div>
             </div>
         );
