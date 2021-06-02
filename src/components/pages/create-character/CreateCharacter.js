@@ -1,169 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import './CreateCharacter.scss';
-import mainImageSvg from './image/test-svg-02.svg';
+import initialCharState from './starting-state';
+
 import { withRouter } from "react-router";
 
 
 class CreateCharacter extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            level1Nav: [{
-                title: 'basics',
-                icon: 'neuter',
-                level2: [],
-                options: [{
-                    id: 1,
-                    valueSvg: ` <p>1</p>`,
-                    displayImg: '1'
-                },
-                {
-                    id: 2,
-                    valueSvg: ` <p>1</p>`,
-                    displayImg: '2'
-                },
-                {
-                    id: 1,
-                    valueSvg: ` <p>1</p>`,
-                    displayImg: '3'
-                },
-                {
-                    id: 1,
-                    valueSvg: ` <p>1</p>`,
-                    displayImg: '4'
-                },]
-            },
-            {
-                title: 'face',
-                icon: 'smile',
-                level2: [],
-                level2Items: [{
-                    title: 'basics',
-                    icon: 'neuter',
-                    options: [{
-                        id: 1,
-                        valueSvg: ` <p>1</p>`,
-                        displayImg: '1'
-                    },
-                    {
-                        id: 2,
-                        valueSvg: ` <p>1</p>`,
-                        displayImg: '2'
-                    },
-                    {
-                        id: 1,
-                        valueSvg: ` <p>1</p>`,
-                        displayImg: '3'
-                    },
-                    {
-                        id: 1,
-                        valueSvg: ` <p>1</p>`,
-                        displayImg: '4'
-                    },]
-                }],
-            },
-            {
-                title: 'hairstyle',
-                icon: 'rainbow',
-                level2: [],
-                options: [
-                    {
-                        id: 1,
-                        valueSvg: <use id="hairstyle-spike" width="454" height="213" x="188.469" y="139.831" transform="scale(.99963 1.00235)" xlinkHref="#_Image1"></use >,
-                        displayImg: ''
-                    },
-                    {
-                        id: 2,
-                        valueSvg: <use
-                            id="hairstyle-medium-curl"
-                            width="674"
-                            height="433"
-                            x="162.961"
-                            y="110.005"
-                            transform="scale(.99852 .99923)"
-                            xlinkHref="#_Image2"
-                        ></use>,
-                        displayImg: ''
-                    },
-                    {
-                        id: 3,
-                        valueSvg:
-                            <use
-                                id="hairstyle-medium-long"
-                                width="663"
-                                height="646"
-                                x="165.715"
-                                y="123.568"
-                                transform="scale(1.00075 1.00026)"
-                                xlinkHref="#_Image3"
-                            ></use>,
-                        displayImg: ''
-                    },
-                ]
-            },
-            {
-                title: 'body style',
-                icon: 'female',
-                level2: [],
-                options: [{
-                    id: 1,
-                    valueSvg: ` <p>1</p>`,
-                    displayImg: '1'
-                },
-                {
-                    id: 2,
-                    valueSvg: ` <p>1</p>`,
-                    displayImg: '2'
-                },
-                {
-                    id: 1,
-                    valueSvg: ` <p>1</p>`,
-                    displayImg: '3'
-                },
-                {
-                    id: 1,
-                    valueSvg: ` <p>1</p>`,
-                    displayImg: '4'
-                },]
-            },
-            {
-                title: 'clothing',
-                icon: 'tshirt',
-                level2: [],
-                options: [{
-                    id: 1,
-                    valueSvg: ` <p>1</p>`,
-                    displayImg: '1'
-                },
-                {
-                    id: 2,
-                    valueSvg: ` <p>1</p>`,
-                    displayImg: '2'
-                },
-                {
-                    id: 1,
-                    valueSvg: ` <p>1</p>`,
-                    displayImg: '3'
-                },
-                {
-                    id: 1,
-                    valueSvg: ` <p>1</p>`,
-                    displayImg: '4'
-                },]
-            }
-            ],
-
-            level2Nav: [],
-            level3Nav: [],
-            showLevel2Menu: false,
-            currentCharacter: {
-                hairstyle: '',
-                glasses: '',
-                mustach: '',
-            }
-        }
+        this.state = initialCharState;
         this.handleLevel1OptionClick = this.handleLevel1OptionClick.bind(this);
+        this.handleLevel2OptionClick = this.handleLevel2OptionClick.bind(this);
         this.handleLevel3ItemClick = this.handleLevel3ItemClick.bind(this);
     }
 
@@ -174,21 +22,31 @@ class CreateCharacter extends React.Component {
         let tmpLevel3Nav = [];
         if (level1ItemIn.level2.length === 0)
             tmpLevel3Nav = level1ItemIn.options;
+
         this.setState(
-            { level3Nav: tmpLevel3Nav }
+            {
+                level3Nav: tmpLevel3Nav,
+                currentLevel2: {}
+            }
         );
-        if (level1ItemIn.title === 'hairstyle') {
-            //
-        }
+    }
+
+    handleLevel2OptionClick(level2ItemIn) {
+        this.setState(
+            {
+                level3Nav: level2ItemIn.options,
+                currentLevel2: level2ItemIn
+            }
+        );
     }
 
     handleLevel3ItemClick(level3ItemIn) {
         let tmpCurrenCharacter = this.state.currentCharacter;
-        tmpCurrenCharacter.hairstyle = level3ItemIn.valueSvg;
+        let level2Title = this.state.currentLevel2.title.toString().toLowerCase();
+        tmpCurrenCharacter[level2Title]  = level3ItemIn.valueSvg;
         this.setState({
             currentCharacter: tmpCurrenCharacter
         });
-        console.log(JSON.stringify(this.state));
     }
 
     render() {
@@ -207,8 +65,17 @@ class CreateCharacter extends React.Component {
 
                     </div>
                     {
-                        this.state.showLevel2Menu ?
-                            <div className="level-2-nav"></div> :
+                        this.state.level2Nav.length > 0 ?
+
+                            <div className="level-2-nav">
+                                {this.state.level2Nav.map((level2ItemIn, index) =>
+                                    <div className="level-2-item" key={index} onClick={(e) => this.handleLevel2OptionClick(level2ItemIn)}>
+                                        <i className={'fa fa-' + level2ItemIn.icon}></i>
+                                        <div>{level2ItemIn.title}</div>
+                                    </div>
+                                )}
+
+                            </div> :
                             null
                     }
 
@@ -216,7 +83,7 @@ class CreateCharacter extends React.Component {
                         {this.state.level3Nav.map((level3ItemIn, index) =>
 
                             <div className="options-item" key={index} onClick={(e) => this.handleLevel3ItemClick(level3ItemIn)}>
-                                <p>{level3ItemIn.id}</p>
+                                <p>{level3ItemIn.displayImg}</p>
                             </div>
                         )}
                     </div>
@@ -339,24 +206,7 @@ class CreateCharacter extends React.Component {
                                 {this.state.currentCharacter.hairstyle}
                             </g>
                             <g id="mustach">
-                                <use
-                                    id="mustach-longchinese"
-                                    width="335"
-                                    height="260"
-                                    x="198.925"
-                                    y="210.085"
-                                    transform="scale(1.005 1.00645)"
-                                    xlinkHref="#_Image4"
-                                ></use>
-                                <use
-                                    id="mustach-regular"
-                                    width="210"
-                                    height="67"
-                                    x="213.333"
-                                    y="211.821"
-                                    transform="scale(1.008 1.005)"
-                                    xlinkHref="#_Image5"
-                                ></use>
+                                {this.state.currentCharacter.mustach}
                             </g>
                             <g id="tops">
                                 <use
@@ -418,15 +268,7 @@ class CreateCharacter extends React.Component {
                                     xlinkHref="#_Image11"
                                 ></use>
                             </g>
-                            <use
-                                id="glasses"
-                                width="523"
-                                height="265"
-                                x="191.771"
-                                y="173.645"
-                                transform="scale(.99619 .99375)"
-                                xlinkHref="#_Image12"
-                            ></use>
+                            {this.state.currentCharacter.glasses}
                             <defs>
                                 <image
                                     id="_Image1"
@@ -505,8 +347,8 @@ class CreateCharacter extends React.Component {
                     </div>
                     <footer>
                         <div>
-                            <Link className='btn btn-secondary btn-lg my-3 mr-4' to={"/create-a-book/create-character/characters"}>Cancel</Link>
-                            <Link className='btn btn-primary btn-lg my-3' to={"/create-a-book/create-character/characters"}>Save</Link>
+                            <Link className='btn btn-secondary btn-lg my-3 mr-4' to={"/create-a-book/characters"}>Cancel</Link>
+                            <Link className='btn btn-primary btn-lg my-3' to={"/create-a-book/characters"}>Save</Link>
                         </div>
                     </footer>
                 </div>
